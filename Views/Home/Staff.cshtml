@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Staff Page";
+}
+
+@model List<Zamara.Models.Staff>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="CreateStaff" asp-controller="Staff" class="btn btn-success">Create</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Staff Number</td>
+                    <td>Staff Name</td>
+                    <td>Staff Photo</td>
+                    <td>Staff Email</td>
+                    <td>Department</td>
+                    <td>Salary</td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.StaffNumber</td>
+                    <td>@item.Name</td>
+                    <td>@item.Photo</td>
+                    <td>@item.Email</td>
+                    <td>@item.Department</td>
+                    <td>@item.Salary</td>
+                    <td>
+                        <a asp-action="EditStaff" asp-controller="Staff" asp-route-id="@item.Id">
+                            Edit
+                        </a>
+                        <a asp-action="DeleteStaff" asp-controller="Staff" asp-route-id="@item.Id">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

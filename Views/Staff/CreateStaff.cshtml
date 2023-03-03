@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Register Staff";
+}
+@model Zamara.Models.StaffDto;
+
+<div>
+<form method="post" enctype="multipart/form-data" asp-action="UploadToDatabase" asp-controller="Staff">
+    <input type="file" name="files" multiple required />
+    <input type="text" autocomplete="off" placeholder="Enter File Description" name="description" required />
+    <button class="btn btn-success" type="submit" asp-controller="Staff" asp-action="UploadToDatabase">Upload to Database</button>
+</form>
+    <form asp-action="CreateStaff" asp-area="" asp-controller="Staff">
+        <div class="form-group row">
+            <label for="UserName" class="col-4 col-form-label">Username</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-card"></i>
+                        </div>
+                    </div>
+                    <input id="UserName" name="UserName" placeholder="Username"
+                        type="text" required="required" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Name" class="col-4 col-form-label">Name</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-book"></i>
+                        </div>
+                    </div>
+                    <input id="Name" name="Name" placeholder="Name" type="text"
+                        class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Email" class="col-4 col-form-label">Email</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-book-o"></i>
+                        </div>
+                    </div>
+                    <input id="Email" name="Email" placeholder="Email"
+                        type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Password" class="col-4 col-form-label">Password</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-book-o"></i>
+                        </div>
+                    </div>
+                    <input id="Password" name="Password" placeholder="Password"
+                        type="text" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ConfirmPassword" class="col-4 col-form-label">Confirm
+                Password</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-book-o"></i>
+                        </div>
+                    </div>
+                    <input id="ConfirmPassword" name="ConfirmPassword"
+                        placeholder="ConfirmPassword" type="text"
+                        class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Policy" class="col-4 col-form-label">Policy</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-building-o"></i>
+                        </div>
+                    </div>
+                    <input id="Policy" name="Policy" placeholder="Policy"
+                        type="text" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-4">Claim</label>
+            <div class="col-8">
+                <div class="custom-control custom-checkbox
+                    custom-control-inline">
+                    <input name="Claim" id="Claim_0" type="checkbox"
+                        class="custom-control-input" value="Staff"
+                        required="required">
+                    <label for="Claim_0" class="custom-control-label">Staff</label>
+                </div>
+                <div class="custom-control custom-checkbox
+                    custom-control-inline">
+                    <input name="Claim" id="Claim_1" type="checkbox"
+                        class="custom-control-input" value="Posts"
+                        required="required">
+                    <label for="Claim_1" class="custom-control-label">Posts</label>
+                </div>
+                <div class="custom-control custom-checkbox
+                    custom-control-inline">
+                    <input name="Claim" id="Claim_2" type="checkbox"
+                        class="custom-control-input" value="Reports"
+                        required="required">
+                    <label for="Claim_2" class="custom-control-label">Reports</label>
+                </div>
+                <div class="custom-control custom-checkbox
+                    custom-control-inline">
+                    <input name="Claim" id="Claim_3" type="checkbox"
+                        required="required" class="custom-control-input"
+                        value="Continents">
+                    <label for="Claim_3" class="custom-control-label">Continents</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <button name="submit" type="submit" class="btn btn-primary"
+                    value="CreateStaff">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

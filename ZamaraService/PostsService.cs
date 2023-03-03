@@ -17,9 +17,9 @@ public class PostsService : IPostsService
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            string json = (new WebClient()).DownloadString("https://dummyjson.com/posts");
-            var model = JsonConvert.DeserializeObject<PostDto>(json);
-            return model;
+            var json = await new HttpClient().GetFromJsonAsync<PostDto>("https://dummyjson.com/posts");
+            
+            return json;
 
         }
         catch (Exception ex)

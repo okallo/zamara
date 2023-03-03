@@ -4,6 +4,9 @@
 @model Zamara.Models.PostDto;
 
 <div class="row" style="margin:2em;padding:2em">
+    @if(Model.Posts != null){
+
+
     @foreach (var item in Model.Posts)
     {
         <div class="col-md-4 card">
@@ -16,6 +19,13 @@
 
         </div>
 
+    }
+    }else
+    {
+        <div class="col-md-12 card text-center ">
+          <h1 class="m-auto"> No Posts</h1>
+
+        </div> 
     }
 
 </div>

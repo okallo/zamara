@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using zamara.Models;
 using Zamara.IService;
 using System.Text;
+using Zamara.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity;
+using zamara.Data;
 
 namespace zamara.Controllers;
 
@@ -10,19 +15,68 @@ public class HomeController : Controller
 {
     private static readonly HttpClient httpClient = new HttpClient();
     private readonly ILogger<HomeController> _logger;
-    private readonly IPostsService _postsService;
+    private readonly IPostsService _postsService; private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<IdentityUser> _userManager;
+    private readonly IUserStore<IdentityUser> _userStore;
 
-    public HomeController(ILogger<HomeController> logger,IPostsService postsService)
+    private readonly ApplicationDbContext _context;
+
+    public HomeController(ILogger<HomeController> logger, IPostsService postsService, UserManager<IdentityUser> userManager,
+            IUserStore<IdentityUser> userStore,
+            SignInManager<IdentityUser> signInManager,ApplicationDbContext context)
     {
         _logger = logger;
         _postsService = postsService;
+        _userManager = userManager;
+        _userStore = userStore;
+        _signInManager = signInManager;
+        _logger = logger;
+        _context = context;
     }
+
 
     public IActionResult Index()
     {
         return View();
     }
-    public async Task<IActionResult> ContinentsAsync(){
+public IActionResult Staff()
+    {
+        var d = _context.Staff.ToList();
+        return View(d);
+    }
+    [HttpGet]
+    [AllowAnonymous]
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Register(StaffDto model)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = new Staff
+            {
+                UserName = model.Email,
+                Email = model.Email,
+
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User created a new account with password.");
+
+            }
+        }
+
+        // If we got this far, something failed, redisplay form
+        return View(model);
+    }
+    public async Task<IActionResult> ContinentsAsync()
+    {
 
         string url = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso";
 
@@ -36,7 +90,7 @@ public class HomeController : Controller
         try
         {
             string result = await PostSOAPRequestAsync(url, xmlSOAP);
-        
+
             Console.WriteLine(result);
             return Content(result);
         }
@@ -47,9 +101,10 @@ public class HomeController : Controller
         }
 
     }
-     public async Task<IActionResult> Posts()
+    public async Task<IActionResult> Posts()
     {
         var model = await _postsService.GetPosts();
+        Console.WriteLine(model.Posts.ToString());
         return View(model);
 
     }
