@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Posts Page";
+}
+@model Zamara.Models.PostDto;
+
+<div class="row" style="margin:2em;padding:2em">
+    @foreach (var item in Model.Posts)
+    {
+        <div class="col-md-4 card">
+            <div class="card-title card-header">@item.title</div>
+            <p class="card-body">@item.body</p>
+            <div class="card-footer d-flex justify-content-between">
+
+                <div>reactions @item.reactions</div>
+            </div>
+
+        </div>
+
+    }
+
+</div>

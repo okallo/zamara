@@ -1,7 +1,11 @@
+using Zamara.IService;
+using Zamara.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPostsService, PostsService>();
 
 var app = builder.Build();
 

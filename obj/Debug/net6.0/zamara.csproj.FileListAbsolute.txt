@@ -24,3 +24,6 @@
 /home/clayne/Documents/interview/Final/zamara/obj/Debug/net6.0/ref/zamara.dll
 /home/clayne/Documents/interview/Final/zamara/obj/Debug/net6.0/zamara.pdb
 /home/clayne/Documents/interview/Final/zamara/obj/Debug/net6.0/zamara.genruntimeconfig.cache
+/home/clayne/Documents/interview/Final/zamara/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/clayne/Documents/interview/Final/zamara/bin/Debug/net6.0/RestSharp.dll
+/home/clayne/Documents/interview/Final/zamara/obj/Debug/net6.0/zamara.csproj.CopyComplete

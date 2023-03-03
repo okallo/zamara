@@ -18389,6 +18389,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/clayne/Documents/interview/Final/zamara/Views/Home/Posts.cshtml",
+      "TargetPath": "Views\\Home\\Posts.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/clayne/Documents/interview/Final/zamara/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"

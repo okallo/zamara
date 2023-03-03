@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "z0j9zbNSWV2sHIikK7JxLc39e8gS9eGv2fT9+A13hh0gsRTsLT4BNyMeDAY/xfV5tx7pn0R/OsYFjoarvktGDw==",
+  "dgSpecHash": "CAg9zmc52cvZ0uVB4jyxXfFPbs9Cq3F5nLDZXn+2GByCwTN1pQG3KKx53v8KVtB2qkpC7QJ6LO2avZ9n8u0P+A==",
   "success": true,
   "projectFilePath": "/home/clayne/Documents/interview/Final/zamara/zamara.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/clayne/.nuget/packages/newtonsoft.json/13.0.2/newtonsoft.json.13.0.2.nupkg.sha512",
+    "/home/clayne/.nuget/packages/restsharp/108.0.3/restsharp.108.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
