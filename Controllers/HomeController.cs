@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Identity;
 using zamara.Data;
+using zamara.IService;
 
 namespace zamara.Controllers;
 
@@ -15,15 +16,16 @@ public class HomeController : Controller
 {
     private static readonly HttpClient httpClient = new HttpClient();
     private readonly ILogger<HomeController> _logger;
-    private readonly IPostsService _postsService; private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly IUserStore<IdentityUser> _userStore;
+    private readonly IPostsService _postsService; private readonly SignInManager<Staff> _signInManager;
+      private readonly UserManager<Staff> _userManager;
+    private readonly IUserStore<Staff> _userStore;
 
     private readonly ApplicationDbContext _context;
+    private readonly IStaffService _staffService;
 
-    public HomeController(ILogger<HomeController> logger, IPostsService postsService, UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,ApplicationDbContext context)
+    public HomeController(ILogger<HomeController> logger, IPostsService postsService, UserManager<Staff> userManager,
+            IUserStore<Staff> userStore,
+            SignInManager<Staff> signInManager, ApplicationDbContext context,IStaffService staffService)
     {
         _logger = logger;
         _postsService = postsService;
@@ -32,6 +34,7 @@ public class HomeController : Controller
         _signInManager = signInManager;
         _logger = logger;
         _context = context;
+        _staffService = staffService;
     }
 
 
@@ -39,10 +42,12 @@ public class HomeController : Controller
     {
         return View();
     }
-public IActionResult Staff()
+    public IActionResult Staff()
     {
-        var d = _context.Staff.ToList();
+        var d = _staffService.GetAllStaff();
         return View(d);
+        //  var d = _userManager.Users.Where(r => r.StaffNumber != null).ToList();
+        // return View(d);
     }
     [HttpGet]
     [AllowAnonymous]

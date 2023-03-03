@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace zamara.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class updatedStaffModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,10 +28,13 @@ namespace zamara.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
+                    Photo = table.Column<string>(type: "TEXT", nullable: true),
+                    Department = table.Column<string>(type: "TEXT", nullable: true),
+                    Salary = table.Column<string>(type: "TEXT", nullable: true),
+                    StaffNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
                     Policy = table.Column<string>(type: "TEXT", nullable: true),
                     Claims = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -50,35 +53,6 @@ namespace zamara.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Staff",
-                columns: table => new
-                {
-                    Photo = table.Column<string>(type: "TEXT", nullable: false),
-                    Department = table.Column<string>(type: "TEXT", nullable: false),
-                    Salary = table.Column<string>(type: "TEXT", nullable: false),
-                    StaffNumber = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Id = table.Column<string>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
                 });
 
             migrationBuilder.CreateTable(
@@ -206,42 +180,57 @@ namespace zamara.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0b3463a2-0c6e-4a29-86cd-352a972e127a", "b0e7953a-4439-4412-aba0-e8c5711e43c6", "Admin", "ADMIN" });
+                values: new object[] { "0b3463a2-0c6e-4a29-86cd-352a972e127a", "ce931254-693e-448f-9613-a31d67fb9823", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "31123878-9202-4d18-b968-14941124892e", "9a2ae790-0ac7-4d9d-90d8-0eb6f042f2f3", "User2", "USE2" });
+                values: new object[] { "31123878-9202-4d18-b968-14941124892e", "829e5954-e076-4919-b04d-e2727c2f82cc", "User2", "USE2" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "839e2c44-75b2-47d1-a280-1b40fa101dbf", "fd10aef3-4450-4011-ac99-bdfac7956fa4", "Staff", "STAFF" });
+                values: new object[] { "839e2c44-75b2-47d1-a280-1b40fa101dbf", "a759811d-3f72-4eab-a1a9-e9d4b1022cc9", "Staff", "STAFF" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c5119adf-4a5a-41b0-886b-55b12994fceb", "86c38698-d36e-4faa-87e9-3d86b1d5c16c", "User3", "USER3" });
+                values: new object[] { "c5119adf-4a5a-41b0-886b-55b12994fceb", "8cf4c607-3ec9-4d28-9592-4224f2369341", "User3", "USER3" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "db7e5c48-b9b9-4225-89d9-9e48dfe12361", "657edc92-ea4f-4bd9-b6a2-005d0cc61b8f", "User1", "USER1" });
+                values: new object[] { "db7e5c48-b9b9-4225-89d9-9e48dfe12361", "59bc4bc5-7ece-4019-9bb2-145f968cbe20", "User1", "USER1" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Claims", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Policy", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "030e2c72-911f-45ab-a87a-205b4b550c96", 0, "Staff,Continents,Reports", "26d60a4b-a240-464d-b7a0-3c49fe9d9a08", "User", "sa@zamara.co.ke", true, false, null, "Stephen Achieng", "SA@ZAMARA.CO.KE", "SA@ZAMARA.CO.KE", "AQAAAAEAACcQAAAAEIguW8MOAgZnwZoQ15DH0jzG2H0mzr0aFuCkOh3uZq9vw+q+0KrmP2fMvr+nPKg9vw==", null, false, "WebPolicy", "284231cf-b819-4f5f-9372-2340d3b902fa", false, "sa@zamara.co.ke" });
+                columns: new[] { "Id", "AccessFailedCount", "Claims", "ConcurrencyStamp", "Department", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "Policy", "Salary", "SecurityStamp", "StaffNumber", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "7e3ebd93-7e28-45e0-b638-7ce99299d850", 0, "Staff,Continents,Reports", "14d28e84-b228-4f99-94d1-f0471967d595", "", "sa@zamara.co.ke", true, false, null, "Stephen Achieng", "SA@ZAMARA.CO.KE", "SA@ZAMARA.CO.KE", "AQAAAAEAACcQAAAAELvnwx1czm/GzxmatrgvXqwCsh3AixCtvX0IH/POwHQRN1/oRmxdc8cqNQuHHK8Egg==", null, false, null, "WebPolicy", null, "7ff0af33-9e5b-4466-98d2-22eb3e8a270e", null, false, "sa@zamara.co.ke" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Claims", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Policy", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a32f6406-a7e0-4fb8-bce0-cb5dd755f893", 0, "Staff,Posts,Reports", "da3823be-d304-41a2-9256-4d7e156c2cc9", "User", "jk@zamara.co.ke", true, false, null, "James Kimani", "JK@ZAMARA.CO.KE", "JK@ZAMARA.CO.KE", "AQAAAAEAACcQAAAAEJIOSLaYWfCVsjbGElYA+R0uUE+a0UXOHChiTcj6A5DCqdxCNr8nctipMPP4yf3Yyg==", null, false, "WebPolicy", "903b6241-037f-4e5b-b358-1edcc91e4dd3", false, "jk@zamara.co.ke" });
+                columns: new[] { "Id", "AccessFailedCount", "Claims", "ConcurrencyStamp", "Department", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "Policy", "Salary", "SecurityStamp", "StaffNumber", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "bc00907f-6b2b-4e2f-bd1c-0dc77965de3b", 0, "Staff,Posts,Reports", "a41afbf3-262a-4dbf-b604-c9783fb9e1a8", "", "jk@zamara.co.ke", true, false, null, "James Kimani", "JK@ZAMARA.CO.KE", "JK@ZAMARA.CO.KE", "AQAAAAEAACcQAAAAED/odenJsXQ1pLuSfLm6tWnm/lO/yDUikGl1AUBPdxdge07VnaSASM0JoMmG+jhDqw==", null, false, null, "WebPolicy", null, "13e2233c-6105-493a-9ed1-48f63a8196b7", null, false, "jk@zamara.co.ke" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Claims", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Policy", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e0f5616c-2dd6-4145-b5fe-33879ff0a1b5", 0, "Staff,Continents,Reports", "baedc71b-09fd-46c3-a904-5264f98184ff", "User", "so@zamara.co.ke", true, false, null, "Samuel Okutoyi", "SO@ZAMARA.CO.KE", "SO@ZAMARA.CO.KE", "AQAAAAEAACcQAAAAEONPyOxm5heTzrRNLMRinoBoc2wpCMoobjFn8Se0i1cTLLSXDNLyri5zPKcKXze5gA==", null, false, "WebPolicy", "c1d556a1-40b9-4df9-bc70-60b34f3233c6", false, "so@zamara.co.ke" });
+                columns: new[] { "Id", "AccessFailedCount", "Claims", "ConcurrencyStamp", "Department", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Photo", "Policy", "Salary", "SecurityStamp", "StaffNumber", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "d53b4055-8b95-430f-82bb-3cd8e86421be", 0, "Staff,Continents,Reports", "ab01be7e-0bd8-4500-bb6f-332ca4f28846", "", "so@zamara.co.ke", true, false, null, "Samuel Okutoyi", "SO@ZAMARA.CO.KE", "SO@ZAMARA.CO.KE", "AQAAAAEAACcQAAAAEPYtDctvxE9uWw2I2DLCp3Jfj7+gPkiB0JlT/jxAt9G9OjjOL8p3H6k8g+c60A3zag==", null, false, null, "WebPolicy", null, "1b11fd05-62a7-4aeb-ab6e-00edcf9549e8", null, false, "so@zamara.co.ke" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "31123878-9202-4d18-b968-14941124892e", "7e3ebd93-7e28-45e0-b638-7ce99299d850" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "db7e5c48-b9b9-4225-89d9-9e48dfe12361", "bc00907f-6b2b-4e2f-bd1c-0dc77965de3b" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "c5119adf-4a5a-41b0-886b-55b12994fceb", "d53b4055-8b95-430f-82bb-3cd8e86421be" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -297,9 +286,6 @@ namespace zamara.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Staff");
 
             migrationBuilder.DropTable(
                 name: "StaffFiles");

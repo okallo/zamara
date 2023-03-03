@@ -11,8 +11,8 @@ using zamara.Data;
 namespace zamara.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230303145802_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20230303231942_updatedStaffModel")]
+    partial class updatedStaffModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,35 +48,35 @@ namespace zamara.Migrations
                         new
                         {
                             Id = "0b3463a2-0c6e-4a29-86cd-352a972e127a",
-                            ConcurrencyStamp = "b0e7953a-4439-4412-aba0-e8c5711e43c6",
+                            ConcurrencyStamp = "ce931254-693e-448f-9613-a31d67fb9823",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "839e2c44-75b2-47d1-a280-1b40fa101dbf",
-                            ConcurrencyStamp = "fd10aef3-4450-4011-ac99-bdfac7956fa4",
+                            ConcurrencyStamp = "a759811d-3f72-4eab-a1a9-e9d4b1022cc9",
                             Name = "Staff",
                             NormalizedName = "STAFF"
                         },
                         new
                         {
                             Id = "db7e5c48-b9b9-4225-89d9-9e48dfe12361",
-                            ConcurrencyStamp = "657edc92-ea4f-4bd9-b6a2-005d0cc61b8f",
+                            ConcurrencyStamp = "59bc4bc5-7ece-4019-9bb2-145f968cbe20",
                             Name = "User1",
                             NormalizedName = "USER1"
                         },
                         new
                         {
                             Id = "31123878-9202-4d18-b968-14941124892e",
-                            ConcurrencyStamp = "9a2ae790-0ac7-4d9d-90d8-0eb6f042f2f3",
+                            ConcurrencyStamp = "829e5954-e076-4919-b04d-e2727c2f82cc",
                             Name = "User2",
                             NormalizedName = "USE2"
                         },
                         new
                         {
                             Id = "c5119adf-4a5a-41b0-886b-55b12994fceb",
-                            ConcurrencyStamp = "86c38698-d36e-4faa-87e9-3d86b1d5c16c",
+                            ConcurrencyStamp = "8cf4c607-3ec9-4d28-9592-4224f2369341",
                             Name = "User3",
                             NormalizedName = "USER3"
                         });
@@ -103,76 +103,6 @@ namespace zamara.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -235,6 +165,23 @@ namespace zamara.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "bc00907f-6b2b-4e2f-bd1c-0dc77965de3b",
+                            RoleId = "db7e5c48-b9b9-4225-89d9-9e48dfe12361"
+                        },
+                        new
+                        {
+                            UserId = "7e3ebd93-7e28-45e0-b638-7ce99299d850",
+                            RoleId = "31123878-9202-4d18-b968-14941124892e"
+                        },
+                        new
+                        {
+                            UserId = "d53b4055-8b95-430f-82bb-3cd8e86421be",
+                            RoleId = "c5119adf-4a5a-41b0-886b-55b12994fceb"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -260,24 +207,28 @@ namespace zamara.Migrations
 
             modelBuilder.Entity("Zamara.Models.Staff", b =>
                 {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Claims")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Department")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -286,13 +237,14 @@ namespace zamara.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
@@ -305,27 +257,99 @@ namespace zamara.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Policy")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Salary")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StaffNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
+                        .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.ToTable("Staff");
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bc00907f-6b2b-4e2f-bd1c-0dc77965de3b",
+                            AccessFailedCount = 0,
+                            Claims = "Staff,Posts,Reports",
+                            ConcurrencyStamp = "a41afbf3-262a-4dbf-b604-c9783fb9e1a8",
+                            Department = "",
+                            Email = "jk@zamara.co.ke",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "James Kimani",
+                            NormalizedEmail = "JK@ZAMARA.CO.KE",
+                            NormalizedUserName = "JK@ZAMARA.CO.KE",
+                            PasswordHash = "AQAAAAEAACcQAAAAED/odenJsXQ1pLuSfLm6tWnm/lO/yDUikGl1AUBPdxdge07VnaSASM0JoMmG+jhDqw==",
+                            PhoneNumberConfirmed = false,
+                            Policy = "WebPolicy",
+                            SecurityStamp = "13e2233c-6105-493a-9ed1-48f63a8196b7",
+                            TwoFactorEnabled = false,
+                            UserName = "jk@zamara.co.ke"
+                        },
+                        new
+                        {
+                            Id = "7e3ebd93-7e28-45e0-b638-7ce99299d850",
+                            AccessFailedCount = 0,
+                            Claims = "Staff,Continents,Reports",
+                            ConcurrencyStamp = "14d28e84-b228-4f99-94d1-f0471967d595",
+                            Department = "",
+                            Email = "sa@zamara.co.ke",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "Stephen Achieng",
+                            NormalizedEmail = "SA@ZAMARA.CO.KE",
+                            NormalizedUserName = "SA@ZAMARA.CO.KE",
+                            PasswordHash = "AQAAAAEAACcQAAAAELvnwx1czm/GzxmatrgvXqwCsh3AixCtvX0IH/POwHQRN1/oRmxdc8cqNQuHHK8Egg==",
+                            PhoneNumberConfirmed = false,
+                            Policy = "WebPolicy",
+                            SecurityStamp = "7ff0af33-9e5b-4466-98d2-22eb3e8a270e",
+                            TwoFactorEnabled = false,
+                            UserName = "sa@zamara.co.ke"
+                        },
+                        new
+                        {
+                            Id = "d53b4055-8b95-430f-82bb-3cd8e86421be",
+                            AccessFailedCount = 0,
+                            Claims = "Staff,Continents,Reports",
+                            ConcurrencyStamp = "ab01be7e-0bd8-4500-bb6f-332ca4f28846",
+                            Department = "",
+                            Email = "so@zamara.co.ke",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "Samuel Okutoyi",
+                            NormalizedEmail = "SO@ZAMARA.CO.KE",
+                            NormalizedUserName = "SO@ZAMARA.CO.KE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPYtDctvxE9uWw2I2DLCp3Jfj7+gPkiB0JlT/jxAt9G9OjjOL8p3H6k8g+c60A3zag==",
+                            PhoneNumberConfirmed = false,
+                            Policy = "WebPolicy",
+                            SecurityStamp = "1b11fd05-62a7-4aeb-ab6e-00edcf9549e8",
+                            TwoFactorEnabled = false,
+                            UserName = "so@zamara.co.ke"
+                        });
                 });
 
             modelBuilder.Entity("zamara.Models.StaffFile", b =>
@@ -351,84 +375,6 @@ namespace zamara.Migrations
                     b.ToTable("StaffFiles");
                 });
 
-            modelBuilder.Entity("Zamara.Models.User", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Claims")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Policy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasDiscriminator().HasValue("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a32f6406-a7e0-4fb8-bce0-cb5dd755f893",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "da3823be-d304-41a2-9256-4d7e156c2cc9",
-                            Email = "jk@zamara.co.ke",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "JK@ZAMARA.CO.KE",
-                            NormalizedUserName = "JK@ZAMARA.CO.KE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJIOSLaYWfCVsjbGElYA+R0uUE+a0UXOHChiTcj6A5DCqdxCNr8nctipMPP4yf3Yyg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "903b6241-037f-4e5b-b358-1edcc91e4dd3",
-                            TwoFactorEnabled = false,
-                            UserName = "jk@zamara.co.ke",
-                            Claims = "Staff,Posts,Reports",
-                            Name = "James Kimani",
-                            Policy = "WebPolicy"
-                        },
-                        new
-                        {
-                            Id = "030e2c72-911f-45ab-a87a-205b4b550c96",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "26d60a4b-a240-464d-b7a0-3c49fe9d9a08",
-                            Email = "sa@zamara.co.ke",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SA@ZAMARA.CO.KE",
-                            NormalizedUserName = "SA@ZAMARA.CO.KE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIguW8MOAgZnwZoQ15DH0jzG2H0mzr0aFuCkOh3uZq9vw+q+0KrmP2fMvr+nPKg9vw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "284231cf-b819-4f5f-9372-2340d3b902fa",
-                            TwoFactorEnabled = false,
-                            UserName = "sa@zamara.co.ke",
-                            Claims = "Staff,Continents,Reports",
-                            Name = "Stephen Achieng",
-                            Policy = "WebPolicy"
-                        },
-                        new
-                        {
-                            Id = "e0f5616c-2dd6-4145-b5fe-33879ff0a1b5",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "baedc71b-09fd-46c3-a904-5264f98184ff",
-                            Email = "so@zamara.co.ke",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SO@ZAMARA.CO.KE",
-                            NormalizedUserName = "SO@ZAMARA.CO.KE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEONPyOxm5heTzrRNLMRinoBoc2wpCMoobjFn8Se0i1cTLLSXDNLyri5zPKcKXze5gA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "c1d556a1-40b9-4df9-bc70-60b34f3233c6",
-                            TwoFactorEnabled = false,
-                            UserName = "so@zamara.co.ke",
-                            Claims = "Staff,Continents,Reports",
-                            Name = "Samuel Okutoyi",
-                            Policy = "WebPolicy"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -440,7 +386,7 @@ namespace zamara.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Zamara.Models.Staff", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -449,7 +395,7 @@ namespace zamara.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Zamara.Models.Staff", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,7 +410,7 @@ namespace zamara.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Zamara.Models.Staff", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -473,7 +419,7 @@ namespace zamara.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Zamara.Models.Staff", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

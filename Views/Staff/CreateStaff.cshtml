@@ -1,15 +1,97 @@
 @{
-    ViewData["Title"] = "Register Staff";
+ViewData["Title"] = "Register Staff";
 }
 @model Zamara.Models.StaffDto;
 
-<div>
-<form method="post" enctype="multipart/form-data" asp-action="UploadToDatabase" asp-controller="Staff">
-    <input type="file" name="files" multiple required />
-    <input type="text" autocomplete="off" placeholder="Enter File Description" name="description" required />
-    <button class="btn btn-success" type="submit" asp-controller="Staff" asp-action="UploadToDatabase">Upload to Database</button>
-</form>
-    <form asp-action="CreateStaff" asp-area="" asp-controller="Staff">
+<div class="row">
+    <div class="col-md-12 text-center">
+
+        @* <form method="post" enctype="multipart/form-data" asp-action="UploadToDatabase" asp-controller="Staff">
+            <input type="file" name="files" multiple required />
+            <input type="text" autocomplete="off" placeholder="Enter File Description" name="description" required />
+            <button class="btn btn-success" type="submit" asp-controller="Staff" asp-action="UploadToDatabase">Upload to
+                Database</button>
+        </form> *@
+
+        <form enctype="multipart/form-data" asp-action="CreateStaff" asp-area="" asp-controller="Staff">
+            <br>
+            <h2>Create a new staff.</h2>
+            <br>
+            <hr />
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <br>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-floating">
+                        <input asp-for="Name" class="form-control" autocomplete="name" aria-required="true" />
+                        <label asp-for="Name"></label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <label asp-for="Email"></label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="StaffNumber" class="form-control" autocomplete="staffnumber"
+                            aria-required="true" />
+                        <label asp-for="StaffNumber"></label>
+                        <span asp-validation-for="StaffNumber" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="Salary" class="form-control" autocomplete="salary" aria-required="true" />
+                        <label asp-for="Salary"></label>
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="PhotoFile" class="form-control" autocomplete="photo" aria-required="true"
+                            type="file" />
+                        <label asp-for="PhotoFile"></label>
+                        <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-md-6">
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="Policy" class="form-control" autocomplete="policy" aria-required="true" />
+                        <label asp-for="Policy"></label>
+                        <span asp-validation-for="Policy" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="Claims" class="form-control" autocomplete="policy comma separated" aria-required="true" />
+                        <label asp-for="Claims"></label>
+                        <span asp-validation-for="Claims" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="Password" class="form-control" autocomplete="new-password"
+                            aria-required="true" />
+                        <label asp-for="Password"></label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password"
+                            aria-required="true" />
+                        <label asp-for="ConfirmPassword"></label>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <br>
+                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                    <br>
+                </div>
+            </div>
+        </form>
+    </div>
+    @* <form asp-action="CreateStaff" asp-area="" asp-controller="Staff">
         <div class="form-group row">
             <label for="UserName" class="col-4 col-form-label">Username</label>
             <div class="col-8">
@@ -19,8 +101,8 @@
                             <i class="fa fa-address-card"></i>
                         </div>
                     </div>
-                    <input id="UserName" name="UserName" placeholder="Username"
-                        type="text" required="required" class="form-control">
+                    <input id="UserName" name="UserName" placeholder="Username" type="text" required="required"
+                        class="form-control">
                 </div>
             </div>
         </div>
@@ -33,8 +115,8 @@
                             <i class="fa fa-address-book"></i>
                         </div>
                     </div>
-                    <input id="Name" name="Name" placeholder="Name" type="text"
-                        class="form-control" required="required">
+                    <input id="Name" name="Name" placeholder="Name" type="text" class="form-control"
+                        required="required">
                 </div>
             </div>
         </div>
@@ -47,8 +129,7 @@
                             <i class="fa fa-address-book-o"></i>
                         </div>
                     </div>
-                    <input id="Email" name="Email" placeholder="Email"
-                        type="text" class="form-control">
+                    <input id="Email" name="Email" placeholder="Email" type="text" class="form-control">
                 </div>
             </div>
         </div>
@@ -61,8 +142,8 @@
                             <i class="fa fa-address-book-o"></i>
                         </div>
                     </div>
-                    <input id="Password" name="Password" placeholder="Password"
-                        type="text" class="form-control" required="required">
+                    <input id="Password" name="Password" placeholder="Password" type="text" class="form-control"
+                        required="required">
                 </div>
             </div>
         </div>
@@ -76,8 +157,7 @@
                             <i class="fa fa-address-book-o"></i>
                         </div>
                     </div>
-                    <input id="ConfirmPassword" name="ConfirmPassword"
-                        placeholder="ConfirmPassword" type="text"
+                    <input id="ConfirmPassword" name="ConfirmPassword" placeholder="ConfirmPassword" type="text"
                         class="form-control">
                 </div>
             </div>
@@ -91,8 +171,8 @@
                             <i class="fa fa-building-o"></i>
                         </div>
                     </div>
-                    <input id="Policy" name="Policy" placeholder="Policy"
-                        type="text" class="form-control" required="required">
+                    <input id="Policy" name="Policy" placeholder="Policy" type="text" class="form-control"
+                        required="required">
                 </div>
             </div>
         </div>
@@ -101,29 +181,25 @@
             <div class="col-8">
                 <div class="custom-control custom-checkbox
                     custom-control-inline">
-                    <input name="Claim" id="Claim_0" type="checkbox"
-                        class="custom-control-input" value="Staff"
+                    <input name="Claim" id="Claim_0" type="checkbox" class="custom-control-input" value="Staff"
                         required="required">
                     <label for="Claim_0" class="custom-control-label">Staff</label>
                 </div>
                 <div class="custom-control custom-checkbox
                     custom-control-inline">
-                    <input name="Claim" id="Claim_1" type="checkbox"
-                        class="custom-control-input" value="Posts"
+                    <input name="Claim" id="Claim_1" type="checkbox" class="custom-control-input" value="Posts"
                         required="required">
                     <label for="Claim_1" class="custom-control-label">Posts</label>
                 </div>
                 <div class="custom-control custom-checkbox
                     custom-control-inline">
-                    <input name="Claim" id="Claim_2" type="checkbox"
-                        class="custom-control-input" value="Reports"
+                    <input name="Claim" id="Claim_2" type="checkbox" class="custom-control-input" value="Reports"
                         required="required">
                     <label for="Claim_2" class="custom-control-label">Reports</label>
                 </div>
                 <div class="custom-control custom-checkbox
                     custom-control-inline">
-                    <input name="Claim" id="Claim_3" type="checkbox"
-                        required="required" class="custom-control-input"
+                    <input name="Claim" id="Claim_3" type="checkbox" required="required" class="custom-control-input"
                         value="Continents">
                     <label for="Claim_3" class="custom-control-label">Continents</label>
                 </div>
@@ -131,9 +207,8 @@
         </div>
         <div class="form-group row">
             <div class="offset-4 col-8">
-                <button name="submit" type="submit" class="btn btn-primary"
-                    value="CreateStaff">Submit</button>
+                <button name="submit" type="submit" class="btn btn-primary" value="CreateStaff">Submit</button>
             </div>
         </div>
-    </form>
+    </form> *@
 </div>

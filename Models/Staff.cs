@@ -6,26 +6,34 @@ namespace Zamara.Models;
 [Keyless]
 public class Staff : IdentityUser
 {
-    [Required]
     [DataType(DataType.Upload)]
     [Display(Name = "Photo")]
     public string? Photo { get; set; }
-    [Required]
+    
     [DataType(DataType.Text)]
     [Display(Name = "Department")]
     public string? Department { get; set; }
 
-    [Required]
     [DataType(DataType.Currency)]
     [Display(Name = "Salary")]
     public string? Salary { get; set; }
-    [Required]
+  
     [DataType(DataType.Text)]
     [Display(Name = "StaffNumber")]
     public string? StaffNumber { get; set; }
-    [Required]
+    
     [DataType(DataType.Text)]
     [Display(Name = "StaffName")]
     public string? Name { get; set; }
+
+   
+    [DataType(DataType.Text)]
+    [Display(Name = "Policy")]
+    public string? Policy { get; set; }
+    
+    [DataType(DataType.MultilineText)]
+    [Display(Name = "Claims")]
+    public string? Claims { get; set; }
+
 
 }
